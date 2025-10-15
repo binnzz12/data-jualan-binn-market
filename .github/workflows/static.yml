@@ -1,0 +1,1352 @@
+// filepath: Untitled-1
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binn Marketplace — Pasar Digital Aman untuk Akun Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border: #e2e8f0;
+            --card-bg: white;
+            --text-color: var(--dark);
+            --text-secondary: var(--gray);
+            --header-bg: white;
+            --hero-bg: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            --warning-bg: #fef3c7;
+            --warning-text: #92400e;
+            --footer-bg: var(--dark);
+            --footer-text: white;
+            --footer-secondary: #94a3b8;
+        }
+
+        .dark-mode {
+            --light: #1e293b;
+            --dark: #f8fafc;
+            --gray: #94a3b8;
+            --light-gray: #334155;
+            --border: #334155;
+            --card-bg: #1e293b;
+            --text-color: var(--dark);
+            --text-secondary: var(--gray);
+            --header-bg: #0f172a;
+            --hero-bg: linear-gradient(90deg, #1e3a8a 0%, #5b21b6 100%);
+            --warning-bg: #7c2d12;
+            --warning-text: #fde68a;
+            --footer-bg: #0f172a;
+            --footer-text: white;
+            --footer-secondary: #94a3b8;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f1f5f9 0%, #dbeafe 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+            transition: background 0.3s ease;
+        }
+
+        .dark-mode body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--header-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            background: var(--light-gray);
+            color: var(--text-color);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--gray);
+        }
+
+        .clock {
+            background: var(--light-gray);
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .admin-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .admin-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--hero-bg);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background: var(--warning-bg);
+            border-bottom: 1px solid #fde68a;
+            padding: 12px 2rem;
+        }
+
+        .warning-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--warning-text);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .warning-icon {
+            font-size: 18px;
+        }
+
+        /* Dashboard Section */
+        .dashboard {
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .stat-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-info p:first-child {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .stat-info p:last-child {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .icon-green { background: #dcfce7; color: #16a34a; }
+        .icon-blue { background: #dbeafe; color: #2563eb; }
+        .icon-orange { background: #ffedd5; color: #ea580c; }
+        .icon-purple { background: #ede9fe; color: #7c3aed; }
+        .icon-pink { background: #fce7f3; color: #be185d; }
+
+        .dark-mode .icon-green { background: #064e3b; color: #60a5fa; }
+        .dark-mode .icon-blue { background: #1e3a8a; color: #93c5fd; }
+        .dark-mode .icon-orange { background: #7c2d12; color: #fdba74; }
+        .dark-mode .icon-purple { background: #4c1d95; color: #c4b5fd; }
+        .dark-mode .icon-pink { background: #881337; color: #fbcfe8; }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 192px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-info h5 {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-color);
+        }
+
+        .product-info p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .product-sales {
+            background: var(--light-gray);
+            color: var(--text-color);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Admin Product Management */
+        .admin-section {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .admin-section h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--text-color);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-success:hover { background: #059669; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-warning:hover { background: #d97706; }
+        .btn-secondary:hover { background: #cbd5e1; }
+
+        .dark-mode .btn-secondary:hover { background: #475569; }
+
+        /* Product List for Admin */
+        .product-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            background: var(--card-bg);
+        }
+
+        .product-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-list-info {
+            flex: 1;
+        }
+
+        .product-list-info h6 {
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: var(--text-color);
+        }
+
+        .product-list-info p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .product-list-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        /* Analytics Section */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .analytics-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .analytics-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .analytics-header i {
+            color: var(--primary);
+        }
+
+        .analytics-header h4 {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-info p:first-child {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .transaction-info p:last-child {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .transaction-amount {
+            text-align: right;
+        }
+
+        .transaction-amount p:first-child {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #16a34a;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .dark-mode .status-completed {
+            background: #064e3b;
+            color: #60a5fa;
+        }
+
+        .dark-mode .status-cancelled {
+            background: #7f1d1d;
+            color: #fecaca;
+        }
+
+        /* Market Trends */
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .trend-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .dark-mode .trend-card {
+            background: #334155;
+        }
+
+        .trend-card h5 {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .trend-card p {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-col h3 i {
+            background: var(--primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-col p {
+            color: var(--footer-secondary);
+            line-height: 1.6;
+        }
+
+        .footer-list {
+            list-style: none;
+        }
+
+        .footer-list li {
+            margin-bottom: 8px;
+            color: var(--footer-secondary);
+        }
+
+        .customer-service {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .customer-service:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--footer-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            color: var(--text-color);
+        }
+
+        .modal h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .dashboard {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Binn Marketplace</h1>
+                    <p>Pasar Digital Aman untuk Akun Premium</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="clock">
+                    <i class="fas fa-clock"></i>
+                    <span id="current-time">00:00:00</span>
+                </div>
+                <button class="admin-btn" id="adminLoginBtn">
+                    <i class="fas fa-cog"></i>
+                    Admin
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h2>Kelola dan pantau pemasukan penjualan akun premium secara real-time.</h2>
+            <p>Platform marketplace aman dan transparan untuk produk digital legal dengan analitik cerdas dan pelacakan pendapatan real-time.</p>
+        </div>
+    </section>
+
+    <!-- Warning Banner -->
+    <div class="warning-banner">
+        <div class="warning-content">
+            <i class="fas fa-exclamation-triangle warning-icon"></i>
+            <strong>Peringatan Hukum:</strong> Binn Marketplace hanya mengizinkan penjualan produk digital legal seperti gift card resmi, lisensi software, dan konten digital orisinal. Penjualan akun yang melanggar Terms of Service dilarang.
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="section-title">
+                <h3>Dashboard Penjual</h3>
+                <p>Pantau kinerja bisnis digital Anda secara real-time</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <p>Total Pendapatan</p>
+                            <p id="total-revenue">Rp12.847.500</p>
+                        </div>
+                        <div class="stat-icon icon-green">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <p>Penjualan Hari Ini</p>
+                            <p id="daily-sales">342</p>
+                        </div>
+                        <div class="stat-icon icon-blue">
+                            <i class="fas fa-box"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <p>Pendapatan Hari Ini</p>
+                            <p id="today-revenue">Rp1.247.800</p>
+                        </div>
+                        <div class="stat-icon icon-orange">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <p>Pendapatan Mingguan</p>
+                            <p id="weekly-revenue">Rp8.923.750</p>
+                        </div>
+                        <div class="stat-icon icon-purple">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <p>Pendapatan Bulanan</p>
+                            <p id="monthly-revenue">Rp28.456.200</p>
+                        </div>
+                        <div class="stat-icon icon-pink">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Product Management Section -->
+            <div class="admin-section" id="adminProductSection">
+                <h4>Tambah Produk Baru</h4>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productName">Nama Produk</label>
+                        <input type="text" id="productName" placeholder="Masukkan nama produk" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Kategori</label>
+                        <select id="productCategory" required>
+                            <option value="">Pilih kategori</option>
+                            <option value="Design Tools">Design Tools</option>
+                            <option value="Streaming">Streaming</option>
+                            <option value="Productivity">Productivity</option>
+                            <option value="Creative Software">Creative Software</option>
+                            <option value="E-Learning">E-Learning</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Harga (Rp)</label>
+                        <input type="number" id="productPrice" placeholder="Masukkan harga" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">URL Gambar (opsional)</label>
+                        <input type="url" id="productImage" placeholder="https://example.com/image.png">
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button class="btn btn-primary" id="addProductBtn">
+                        <i class="fas fa-plus"></i> Tambah Produk
+                    </button>
+                </div>
+
+                <h4 style="margin-top: 2rem;">Kelola Produk</h4>
+                <div class="product-list" id="productList">
+                    <!-- Products will be loaded here dynamically -->
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="section-title">
+                <h3>Produk Tersedia</h3>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+
+            <!-- Analytics Section -->
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <div class="analytics-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Produk Terlaris</h4>
+                    </div>
+                    <div class="analytics-list" id="bestSellingList">
+                        <!-- Best selling products will be loaded here -->
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-header">
+                        <i class="fas fa-file-invoice"></i>
+                        <h4>Transaksi Terbaru</h4>
+                    </div>
+                    <div class="analytics-list">
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <p>Canva Pro License</p>
+                                <p>10:23 AM</p>
+                            </div>
+                            <div class="transaction-amount">
+                                <p>Rp29.990</p>
+                                <span class="status-completed">completed</span>
+                            </div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <p>Spotify Premium Gift Card</p>
+                                <p>09:45 AM</p>
+                            </div>
+                            <div class="transaction-amount">
+                                <p>Rp14.990</p>
+                                <span class="status-completed">completed</span>
+                            </div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <p>Netflix Premium Account</p>
+                                <p>06:45 AM</p>
+                            </div>
+                            <div class="transaction-amount">
+                                <p>Rp19.990</p>
+                                <span class="status-cancelled">cancelled</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Trends -->
+            <div class="analytics-card" style="margin-top: 2rem;">
+                <div class="analytics-header">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>Tren Pasar Digital 2025</h4>
+                </div>
+                <div class="trends-grid">
+                    <div class="trend-card" style="background: #dbeafe;">
+                        <h5 style="color: #1e40af;">Produk Digital Legal</h5>
+                        <p style="color: #1e3a8a;">Lisensi software, gift card resmi, dan konten digital orisinal menjadi pilihan utama konsumen.</p>
+                    </div>
+                    <div class="trend-card" style="background: #dcfce7;">
+                        <h5 style="color: #166534;">E-Learning & Kursus</h5>
+                        <p style="color: #15803d;">Permintaan tinggi untuk kursus online, template pembelajaran, dan sertifikasi digital.</p>
+                    </div>
+                    <div class="trend-card" style="background: #ede9fe;">
+                        <h5 style="color: #5b21b6;">Plugin & Tools Kreatif</h5>
+                        <p style="color: #7c3aed;">Plugin kreatif dan tools profesional menjadi tren utama di kalangan profesional digital.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>
+                        <i class="fas fa-shield-alt"></i>
+                        Binn Marketplace
+                    </h3>
+                    <p>Platform marketplace aman dan transparan untuk produk digital legal dengan fokus pada keamanan dan analitik cerdas.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Fitur Utama</h3>
+                    <ul class="footer-list">
+                        <li>Dashboard Real-Time</li>
+                        <li>Analitik Produk Terlaris</li>
+                        <li>Verifikasi Penjual</li>
+                        <li>Laporan Transaksi Otomatis</li>
+                        <li>Edukasi Hukum Digital</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Layanan Pelanggan</h3>
+                    <div class="customer-service" id="customerServiceBtn">
+                        <i class="fas fa-headset"></i> Hubungi Admin Sekarang
+                    </div>
+                    <ul class="footer-list">
+                        <li>Gift Card Resmi</li>
+                        <li>Lisensi Software Legal</li>
+                        <li>eBook & Kursus Online</li>
+                        <li>Template & Desain</li>
+                        <li>Plugin & Tools Kreatif</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Binn Marketplace. Semua transaksi harus mematuhi hukum dan Terms of Service penyedia layanan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <h3>Login Admin</h3>
+            <div class="form-group">
+                <label for="adminPassword">Password Admin</label>
+                <input type="password" id="adminPassword" placeholder="Masukkan password admin" required>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="loginSubmitBtn">Login</button>
+                <button class="btn btn-secondary" id="cancelBtn">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Service Modal -->
+    <div class="modal" id="customerServiceModal">
+        <div class="modal-content">
+            <h3>Layanan Pelanggan</h3>
+            <div class="form-group">
+                <label for="customerMessage">Pesan Anda</label>
+                <textarea id="customerMessage" rows="4" placeholder="Tulis pesan Anda kepada admin..." required></textarea>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="sendCustomerMessageBtn">Kirim Pesan</button>
+                <button class="btn btn-secondary" id="closeCustomerServiceBtn">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Product data storage
+        let products = [
+            { id: 1, name: 'Canva Pro License', sales: 127, category: 'Design Tools', price: 29990, image: 'https://placehold.co/300x200/3b82f6/ffffff?text=Canva+Pro' },
+            { id: 2, name: 'Spotify Premium Gift Card', sales: 98, category: 'Streaming', price: 14990, image: 'https://placehold.co/300x200/10b981/ffffff?text=Spotify' },
+            { id: 3, name: 'Figma Template Bundle', sales: 84, category: 'Design Tools', price: 45000, image: 'https://placehold.co/300x200/8b5cf6/ffffff?text=Figma' },
+            { id: 4, name: 'Notion Template Pack', sales: 76, category: 'Productivity', price: 24990, image: 'https://placehold.co/300x200/f59e0b/ffffff?text=Notion' },
+            { id: 5, name: 'Adobe Creative Cloud', sales: 65, category: 'Creative Software', price: 52990, image: 'https://placehold.co/300x200/ef4444/ffffff?text=Adobe' }
+        ];
+
+        // DOM Elements
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const adminModal = document.getElementById('adminModal');
+        const adminPassword = document.getElementById('adminPassword');
+        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const adminProductSection = document.getElementById('adminProductSection');
+        const productsGrid = document.getElementById('productsGrid');
+        const productList = document.getElementById('productList');
+        const bestSellingList = document.getElementById('bestSellingList');
+        
+        // Form elements
+        const productName = document.getElementById('productName');
+        const productCategory = document.getElementById('productCategory');
+        const productPrice = document.getElementById('productPrice');
+        const productImage = document.getElementById('productImage');
+        const addProductBtn = document.getElementById('addProductBtn');
+
+        // Customer service elements
+        const customerServiceBtn = document.getElementById('customerServiceBtn');
+        const customerServiceModal = document.getElementById('customerServiceModal');
+        const customerMessage = document.getElementById('customerMessage');
+        const sendCustomerMessageBtn = document.getElementById('sendCustomerMessageBtn');
+        const closeCustomerServiceBtn = document.getElementById('closeCustomerServiceBtn');
+
+        // Update clock
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID', {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('current-time').textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Show admin login modal
+        function showAdminLogin() {
+            adminModal.style.display = 'flex';
+        }
+
+        // Close admin modal
+        function closeAdminModal() {
+            adminModal.style.display = 'none';
+            adminPassword.value = '';
+        }
+
+        // Show admin section
+        function showAdminSection() {
+            adminProductSection.style.display = 'block';
+            renderProductList();
+            renderProductsGrid();
+            renderBestSellingList();
+        }
+
+        // Hide admin section
+        function hideAdminSection() {
+            adminProductSection.style.display = 'none';
+        }
+
+        // Admin login
+        function handleAdminLogin() {
+            const password = adminPassword.value.trim();
+            if (password === 'binnprst1123') {
+                alert('Login admin berhasil!');
+                closeAdminModal();
+                showAdminSection();
+            } else {
+                alert('Password admin salah!');
+                adminPassword.focus();
+            }
+        }
+
+        // Add new product
+        function addProduct() {
+            const name = productName.value.trim();
+            const category = productCategory.value;
+            const price = parseInt(productPrice.value);
+            const image = productImage.value.trim() || 'https://placehold.co/300x200/6b7280/ffffff?text=No+Image';
+
+            if (!name || !category || !price) {
+                alert('Semua field wajib diisi!');
+                return;
+            }
+
+            const newProduct = {
+                id: products.length + 1,
+                name: name,
+                category: category,
+                price: price,
+                sales: 0,
+                image: image
+            };
+
+            products.push(newProduct);
+            renderProductList();
+            renderProductsGrid();
+            renderBestSellingList();
+
+            // Clear form
+            productName.value = '';
+            productCategory.value = '';
+            productPrice.value = '';
+            productImage.value = '';
+        }
+
+        // Delete product
+        function deleteProduct(productId) {
+            if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+                products = products.filter(product => product.id !== productId);
+                renderProductList();
+                renderProductsGrid();
+                renderBestSellingList();
+            }
+        }
+
+        // Render products grid (public view)
+        function renderProductsGrid() {
+            productsGrid.innerHTML = '';
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h5>${product.name}</h5>
+                        <p>${product.category}</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rp${product.price.toLocaleString()}</span>
+                            <span class="product-sales">${product.sales} terjual</span>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Render product list for admin management
+        function renderProductList() {
+            productList.innerHTML = '';
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-list-item';
+                productItem.innerHTML = `
+                    <div class="product-list-info">
+                        <h6>${product.name}</h6>
+                        <p>Rp${product.price.toLocaleString()} • ${product.sales} terjual</p>
+                    </div>
+                    <div class="product-list-actions">
+                        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                productList.appendChild(productItem);
+            });
+        }
+
+        // Render best selling products
+        function renderBestSellingList() {
+            // Sort products by sales (descending)
+            const sortedProducts = [...products].sort((a, b) => b.sales - a.sales).slice(0, 5);
+            bestSellingList.innerHTML = '';
+            sortedProducts.forEach(product => {
+                const transactionItem = document.createElement('div');
+                transactionItem.className = 'transaction-item';
+                transactionItem.innerHTML = `
+                    <div class="transaction-info">
+                        <p>${product.name}</p>
+                        <p>${product.category}</p>
+                    </div>
+                    <span class="product-sales">${product.sales} terjual</span>
+                `;
+                bestSellingList.appendChild(transactionItem);
+            });
+        }
+
+        // Customer Service Functions
+        function showCustomerService() {
+            customerServiceModal.style.display = 'flex';
+        }
+
+        function closeCustomerService() {
+            customerServiceModal.style.display = 'none';
+            customerMessage.value = '';
+        }
+
+        function sendCustomerMessage() {
+            const message = customerMessage.value.trim();
+            if (!message) {
+                alert('Pesan tidak boleh kosong!');
+                return;
+            }
+            
+            // In a real app, this would send to admin
+            alert('Pesan Anda telah dikirim ke admin! Mereka akan segera menghubungi Anda.');
+            closeCustomerService();
+        }
+
+        // Event Listeners
+        adminLoginBtn.addEventListener('click', showAdminLogin);
+        cancelBtn.addEventListener('click', closeAdminModal);
+        loginSubmitBtn.addEventListener('click', handleAdminLogin);
+        addProductBtn.addEventListener('click', addProduct);
+
+        // Customer service event listeners
+        customerServiceBtn.addEventListener('click', showCustomerService);
+        closeCustomerServiceBtn.addEventListener('click', closeCustomerService);
+        sendCustomerMessageBtn.addEventListener('click', sendCustomerMessage);
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === adminModal) {
+                closeAdminModal();
+            }
+            if (e.target === customerServiceModal) {
+                closeCustomerService();
+            }
+        });
+
+        // Close modals with Escape key
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (adminModal.style.display === 'flex') {
+                    closeAdminModal();
+                }
+                if (customerServiceModal.style.display === 'flex') {
+                    closeCustomerService();
+                }
+            }
+        });
+
+        // Initialize the page
+        renderProductsGrid();
+        renderBestSellingList();
+    </script>
+</body>
+</html>
